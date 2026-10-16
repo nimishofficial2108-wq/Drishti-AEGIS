@@ -43,7 +43,7 @@ export const Navbar: React.FC = () => {
           <span className="w-8 h-8 rounded-lg bg-[#F3BC22] text-[#082E5F] font-black flex items-center justify-center text-sm shadow-sm">
             A
           </span>
-          <span>DRISHTI AEGIS 4.0</span>
+          <span>DRISHTI AEGIS</span>
         </a>
         <span className="text-xs text-slate-400 font-medium hidden lg:inline">
           / Capital Intelligence Suite

@@ -41,7 +41,7 @@ export const ExecutiveCommandCentre: React.FC = () => {
             <span>FY26–FY31</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-2">
-            DRISHTI AEGIS <span className="text-[#F3BC22]">4.0</span>
+            DRISHTI <span className="text-[#F3BC22]">AEGIS</span>
           </h1>
           <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-2xl">
             Integrated Risk Foresight · Capital Gate Arbiter · Monte Carlo Financial Stress Lab · Trainable Predictive Intelligence.

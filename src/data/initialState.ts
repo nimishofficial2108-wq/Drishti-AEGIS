@@ -2,11 +2,11 @@ import { AegisState } from '../types/aegis';
 
 export const INITIAL_AEGIS_STATE: AegisState = {
   meta: {
-    title: "DRISHTI AEGIS 4.0 | Enterprise Risk Foresight & Capital Intelligence",
+    title: "DRISHTI AEGIS | Enterprise Risk Foresight & Capital Intelligence",
     source: "Consulting Consortium case brief Appendices 1-6",
     dataVersion: "Case FY26 Baseline + Proposed Investment Thesis",
     liveConnected: false,
-    version: "4.0 Executive Edition"
+    version: "Executive Enterprise Edition"
   },
   case: {
     revenue: 8420,
@@ -125,7 +125,14 @@ export const INITIAL_AEGIS_STATE: AegisState = {
       financeCertified: true,
       physicalCountVerified: true,
       benefitDedupVerified: false,
-      source: "Case FY26 baseline; not a gate audit"
+      source: "Case FY26 baseline; genesis block",
+      blockNumber: 1042,
+      txHash: "0x8f2a4b91e03c78d5910fae3b62c1d98471b058a9c34d28e19c05e1974ef9b012",
+      prevBlockHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+      merkleRoot: "0x3e1f0b9874c2d61aa890ce516e9102bf891234cda01928bcdeef1029384756ab",
+      validatorNode: "Node #01 (Board Audit Committee)",
+      signature: "0x3045022100e47a98b2f1c8901de398a0c5b70912ec910384756bf0192837465abcde1029",
+      timestamp: "2026-03-31T18:30:00.000Z"
     }
   ],
   risks: [

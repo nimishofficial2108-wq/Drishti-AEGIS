@@ -49,7 +49,7 @@ const MainContent: React.FC = () => {
       <footer className="border-t border-slate-200 bg-white py-6 px-6 text-center text-xs text-slate-500">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div>
-            <strong>DRISHTI AEGIS 4.0</strong> · Project Drishti CEO Transformation Office
+            <strong>DRISHTI AEGIS</strong> · Project Drishti CEO Transformation Office
           </div>
           <div className="text-[11px] text-slate-400">
             Source: ACPL Case Brief Appendices 1–6 · Seeded Stochastic Simulation · Local Supervised Ridge Fit

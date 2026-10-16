@@ -37,7 +37,7 @@ export const Sidebar: React.FC = () => {
             A
           </div>
           <div>
-            <div className="font-extrabold text-white text-base tracking-wider leading-tight">AEGIS 4.0</div>
+            <div className="font-extrabold text-white text-base tracking-wider leading-tight">AEGIS</div>
             <div className="text-[10px] text-[#AEC5DF] tracking-widest font-semibold uppercase">DRISHTI INTELLIGENCE</div>
           </div>
         </div>

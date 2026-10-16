@@ -57,6 +57,13 @@ export interface ObservationRecord {
   benefitDedupVerified: boolean;
   source: string;
   timestamp?: string;
+  blockNumber?: number;
+  txHash?: string;
+  prevBlockHash?: string;
+  merkleRoot?: string;
+  validatorNode?: string;
+  signature?: string;
+  isTampered?: boolean;
 }
 
 export interface RiskEffects {
