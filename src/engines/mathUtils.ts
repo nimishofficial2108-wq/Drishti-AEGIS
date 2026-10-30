@@ -1,5 +1,5 @@
 /**
- * Mathematical & Statistical Utilities for DRISHTI AEGIS 4.0
+ * Mathematical & Statistical Utilities for DRISHTI AEGIS
  */
 
 /** Seeded PRNG (Mulberry32) for reproducible Monte Carlo simulations */

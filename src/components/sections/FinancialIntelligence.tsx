@@ -4,10 +4,10 @@ import { formatNum, formatCr, formatPct } from '../../engines/mathUtils';
 import { CashFlowChart } from '../charts/CashFlowChart';
 import { TornadoChart } from '../charts/TornadoChart';
 import { calculateEbitdaWaterfall, calculateTornadoSensitivities } from '../../engines/financialEngine';
-import { Coins, TrendingUp, Calendar, AlertCircle } from 'lucide-react';
+import { Coins, TrendingUp, Calendar, AlertCircle, Dices } from 'lucide-react';
 
 export const FinancialIntelligence: React.FC = () => {
-  const { state, financialReturns, setState } = useAegis();
+  const { state, financialReturns, setState, setActiveSection } = useAegis();
 
   const waterfall = useMemo(() => calculateEbitdaWaterfall(state), [state]);
   const sensitivities = useMemo(() => calculateTornadoSensitivities(state), [state]);
@@ -35,7 +35,7 @@ export const FinancialIntelligence: React.FC = () => {
             Five-Year Capital Returns & Valuation
           </h2>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center flex-wrap gap-2.5">
           <span
             className={`px-2.5 py-1 text-xs font-bold rounded-md border ${
               irrPassed
@@ -45,6 +45,13 @@ export const FinancialIntelligence: React.FC = () => {
           >
             {irrPassed ? 'IRR ≥ 18% HURDLE MET' : 'IRR HURDLE MISSED'}
           </span>
+          <button
+            onClick={() => setActiveSection('scenario')}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1465C7] text-white hover:bg-[#083E84] active:scale-95 transition-all shadow-xs cursor-pointer"
+          >
+            <Dices className="w-3.5 h-3.5 text-[#F0C11E]" />
+            <span>Stress-test financial assumptions in Monte Carlo Lab</span>
+          </button>
         </div>
       </div>
 

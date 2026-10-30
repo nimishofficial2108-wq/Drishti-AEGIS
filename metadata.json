@@ -1,5 +1,5 @@
 {
-  "name": "DRISHTI AEGIS 4.0",
+  "name": "DRISHTI AEGIS",
   "description": "Enterprise Risk Foresight, Predictive Intelligence & Capital Decision Platform for Project Drishti",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

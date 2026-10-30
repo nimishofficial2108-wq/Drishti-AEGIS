@@ -4,10 +4,10 @@ import { formatNum } from '../../engines/mathUtils';
 import { getRiskLevel, getRiskLevelColor, getRankedRisks } from '../../engines/riskEngine';
 import { RiskHeatmap } from '../charts/RiskHeatmap';
 import { ScoredRisk } from '../../types/aegis';
-import { ShieldAlert, AlertTriangle, CheckCircle2, Sliders, ChevronDown, ChevronUp } from 'lucide-react';
+import { ShieldAlert, AlertTriangle, CheckCircle2, Sliders, ChevronDown, ChevronUp, Dices } from 'lucide-react';
 
 export const RiskRadarSection: React.FC = () => {
-  const { scoredRisks, updateRisk } = useAegis();
+  const { scoredRisks, updateRisk, setActiveSection } = useAegis();
   const [selectedRisk, setSelectedRisk] = useState<ScoredRisk | null>(null);
   const [expandedRiskId, setExpandedRiskId] = useState<string | null>(null);
 
@@ -26,10 +26,17 @@ export const RiskRadarSection: React.FC = () => {
             AEGIS Risk Radar (R1–R8)
           </h2>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center flex-wrap gap-2.5">
           <span className="text-xs font-bold text-rose-800 bg-rose-50 px-2.5 py-1 rounded-md border border-rose-200">
             {criticalCount} Critical Exposures (RPN ≥ 60)
           </span>
+          <button
+            onClick={() => setActiveSection('scenario')}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1465C7] text-white hover:bg-[#083E84] active:scale-95 transition-all shadow-xs cursor-pointer"
+          >
+            <Dices className="w-3.5 h-3.5 text-[#F0C11E]" />
+            <span>Open Monte Carlo risk assessment</span>
+          </button>
         </div>
       </div>
 

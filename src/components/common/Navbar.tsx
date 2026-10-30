@@ -9,7 +9,7 @@ export const Navbar: React.FC = () => {
     { id: 'overview', label: 'Command Centre' },
     { id: 'arbiter', label: 'Gate Arbiter' },
     { id: 'radar', label: 'Risk Radar' },
-    { id: 'scenario', label: 'Monte Carlo' },
+    { id: 'scenario', label: 'Monte Carlo Lab' },
     { id: 'learning', label: 'ML Studio' },
     { id: 'capital', label: 'Financials' },
     { id: 'roadmap', label: 'Roadmap' },

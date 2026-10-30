@@ -20,7 +20,7 @@ export const Sidebar: React.FC = () => {
     { id: 'overview', label: 'Executive Overview', icon: LayoutDashboard },
     { id: 'arbiter', label: 'Gate Arbiter & Workbench', icon: GitBranch },
     { id: 'radar', label: 'AEGIS Risk Radar', icon: ShieldAlert },
-    { id: 'scenario', label: 'Monte Carlo Stress Lab', icon: Dices },
+    { id: 'scenario', label: 'Monte Carlo Lab', icon: Dices },
     { id: 'learning', label: 'Predictive ML Studio', icon: Cpu },
     { id: 'capital', label: 'Capital & Cash Returns', icon: Coins },
     { id: 'roadmap', label: '36-Month Roadmap', icon: Milestone },

@@ -1,0 +1,1034 @@
+
+ROLE AND OBJECTIVE
+
+Act as a senior McKinsey & Company strategy consultant, a quantitative risk-modeling specialist, a financial engineer, and an award-winning enterprise SaaS product designer.
+
+You are working on an EXISTING, WORKING web application called "Drishti Aegis", built for the Project Drishti / Aarohan Consumer Products Limited (ACPL) consulting case.
+
+Your task is to ADD a premium, production-quality, deeply interactive MONTE CARLO SIMULATION & RISK INTELLIGENCE MODULE to the existing prototype.
+
+DO NOT rebuild the website. DO NOT remove existing features. DO NOT break the current financial dashboards, machine/plant analytics, control-tower pages, forecasting panels, login flows, navigation, or deployment.
+
+The existing application is the source of truth for UI structure and technology choices.
+
+Existing prototype:
+https://drishti-aegis.vercel.app/
+
+The new module should feel like an enterprise-grade risk command center built for a Fortune 500 CFO and Board.
+
+CORE PRODUCT CONCEPT
+
+"20,000 Future Scenarios. One Better Investment Decision."
+
+Create an interactive simulation engine that allows management to test ACPL's ₹150 Cr transformation investment against thousands of possible business outcomes.
+
+The user must be able to:
+1. View an already-completed baseline Monte Carlo simulation.
+2. Understand the financial and operational outcomes visually.
+3. Adjust underlying assumptions using sliders.
+4. See dependent graphs and metrics recalculate.
+5. Select the number of iterations.
+6. Rerun the complete simulation with actual mathematical computations.
+7. Compare the new simulation against the original baseline.
+8. Identify drivers of failure and funding-gate risks.
+9. Explore the effect of implementation risks, control-tower readiness, working-capital recovery, and deployment delays.
+10. Export a professional simulation report and its underlying data.
+
+Every visual must represent actual model computations. NEVER animate fake calculations or invent random result percentages.
+
+==================================================
+1. EXISTING APPLICATION INTEGRATION
+==================================================
+
+FIRST inspect the existing website source code, dependencies, components, theme variables, routing, and state management.
+
+Implement a new navigation entry:
+
+"Monte Carlo Lab"
+
+Place it logically alongside Financial Intelligence, Risk Intelligence, Machine Analytics, and Control Tower.
+
+Create two integrated experiences:
+
+A. MONTE CARLO LAB
+The main interactive dashboard.
+
+B. SIMULATION EXPLAINER
+A visually guided page explaining the model, assumptions, financial logic, and mathematical interpretation in simple language.
+
+Add contextual navigation from existing pages:
+- Financials → "Stress-test financial assumptions"
+- Control Tower → "Simulate gate failure"
+- Plant / Machine Analytics → "Test scheduling efficiency"
+- Risk Dashboard → "Open Monte Carlo risk assessment"
+
+Where existing dashboards display values connected to the same scenario inputs, allow users to send those inputs into Monte Carlo Lab.
+
+Do not silently overwrite existing business data or financial models.
+
+==================================================
+2. MODEL SOURCE OF TRUTH
+==================================================
+
+Use the attached Project Drishti 20,000-iteration Excel workbook, complete scenario dataset, reproducibility scripts, and Monte Carlo audit pack.
+
+The canonical reference implementation is:
+build_montecarlo.py
+
+Default:
+Iterations = 20,000
+Random seed = 20261030
+Simulation horizon = 60 months
+Investment ceiling = ₹150 Cr
+
+The baseline must reproduce the reference model's results:
+
+P(Gate 1 on time) = 48.37%
+P(Gate 2 pass) = 30.70%
+P(Both gates on time) = 28.43%
+P(Payback ≤ Month 30 | fully funded) = 87.28%
+P(Payback ≤ Month 30 | all scenarios) = 66.37%
+
+P10 / P50 / P90 annualized Month 22 EBITDA for Phase-II-funded scenarios:
+₹64.85 Cr / ₹88.47 Cr / ₹115.46 Cr
+
+If the backend or frontend uses a different random-number generator, do not claim exact mathematical reproducibility until the outputs have been reconciled against the reference implementation.
+
+Load the supplied reference outputs as the initial baseline snapshot.
+
+DO NOT hardcode these values into the calculation engine.
+
+Distinguish between:
+- Case-supplied facts
+- Team-assumed probability distributions
+- User-adjusted assumptions
+- Simulated model outputs
+- Independently audited outcomes
+
+This is an illustrative, assumption-driven risk model, NOT an empirically calibrated forecast.
+
+==================================================
+3. VISUAL DESIGN SYSTEM
+==================================================
+
+Use the same blue-yellow corporate consulting theme as the existing Project Drishti presentation.
+
+Primary Navy: #083E84
+Professional Blue: #1465C7
+Golden Yellow: #F0C11E
+White: #FFFFFF
+Soft Blue: #E8F1FB
+Light Gold: #FFF6D8
+Charcoal: #26313F
+Muted Grey: #6D7D93
+
+For risk signals only:
+Success Teal: #14886F
+Failure Red: #C9474F
+
+Use blue and yellow as the primary chart colors, NOT green.
+
+DESIGN INSPIRATION:
+- McKinsey executive analytics
+- Institutional investment risk dashboards
+- Bloomberg-style data density
+- Premium fintech SaaS
+- High-end interactive scientific simulations
+
+Use:
+- Excellent typography hierarchy
+- Thin dividers and grid lines
+- Refined data cards
+- Sophisticated charts
+- Extremely readable axes
+- Animated percentile markers
+- Elegant tooltips
+- Navy backgrounds for hero sections
+- Controlled yellow highlights for important values
+- Subtle transitions rather than excessive animation
+
+The dashboard must remain readable on desktop and responsive on tablets and mobile.
+
+Do not use oversized decorative cards that waste analytical space.
+
+==================================================
+4. MAIN PAGE: MONTE CARLO COMMAND CENTER
+==================================================
+
+Create a compelling page hierarchy.
+
+SECTION A — HERO
+
+Title:
+"Monte Carlo Intelligence Engine"
+
+Subtitle:
+"Stress-testing ₹150 Cr of transformation capital across 20,000 possible futures."
+
+Display an elegant animated model-status indicator:
+
+BASELINE LOADED
+20,000 SIMULATIONS
+SEED 20261030
+60-MONTH HORIZON
+CASE-INFORMED / ASSUMPTION-DRIVEN
+
+Add a compact button:
+"How the Model Works"
+
+MAIN ACTION:
+"RUN SIMULATION"
+
+SECONDARY ACTIONS:
+"Reset to Baseline"
+"Compare Scenarios"
+"Export Model Results"
+
+SECTION B — HERO KPI STRIP
+
+Display six dynamic KPI cards:
+
+1. Gate 1 success probability
+2. Gate 2 success probability
+3. Both gates on-time probability
+4. Probability of payback within 30 months
+5. Median annualized EBITDA
+6. Median 5-year investment NPV
+
+Every KPI should:
+- Animate when the model changes.
+- Show current and baseline values.
+- Display an increase/decrease indicator.
+- Explain its denominator in the tooltip.
+- Use calculated results, never placeholder values.
+
+For payback, clearly distinguish:
+- Unconditional probability across all scenarios
+- Conditional probability among fully funded scenarios
+
+Do not mix these two metrics.
+
+==================================================
+5. INTERACTIVE ASSUMPTION CONTROL PANEL
+==================================================
+
+Build a polished right-side adjustable control panel, approximately 25–30% of desktop screen width.
+
+It must contain live sliders, numeric inputs, visible units, and an individual reset button for each assumption.
+
+GROUP A — COMMERCIAL RECOVERY
+
+Demand recoverability
+Default triangular distribution:
+Minimum 35%
+Most likely 45%
+Maximum 60%
+
+Contribution per additional fill-rate point
+Default uniform distribution:
+₹8.6–11.8 Cr
+
+Month 9 fill-rate uplift
+Default triangular:
+1.4 / 3.4 / 5.5 percentage points
+
+Month 22 fill-rate uplift
+Default triangular:
+4.0 / 6.4 / 9.0 percentage points
+
+GROUP B — INVENTORY
+
+Month 9 inventory reduction
+Default triangular:
+1.5 / 3.4 / 5.5 days
+
+Month 22 inventory reduction
+Default triangular:
+5.0 / 8.5 / 12.0 days
+
+Network value per inventory day:
+₹26.7 Cr
+
+ACPL-owned working-capital value per day:
+₹18.8 Cr
+
+Keep the network and owned working-capital calculations separate.
+
+GROUP C — MANUFACTURING
+
+Independent annual scheduling contribution
+Default triangular:
+₹0 / ₹9.8 / ₹18 Cr
+
+Connect this assumption to scheduling, production efficiency, and machine analytics.
+
+Do not double-count scheduling benefits already represented by recovered service revenue.
+
+GROUP D — OPERATING ECONOMICS
+
+Annual avoided freight and expiry cost
+Default triangular:
+₹10 / ₹27.2 / ₹35 Cr
+
+Incremental running costs:
+₹4 / ₹8 / ₹15 Cr
+
+Cash conversion:
+45% / 66% / 86%
+
+GROUP E — IMPLEMENTATION RISK
+
+Data readiness:
+52% / 79% / 98%
+
+Employee / channel adoption:
+50% / 76% / 96%
+
+Remediation probability following Gate 1 failure:
+52% baseline model assumption
+
+Allow users to adjust assumed model dependence, including common-factor correlation strength.
+
+GROUP F — SIMULATION CONTROLS
+
+Iteration selector:
+1,000
+5,000
+10,000
+20,000
+50,000
+
+Default: 20,000
+
+Advanced:
+Random seed
+Distribution type
+Correlation settings
+Confidence percentiles
+Show / hide baseline comparison
+
+For triangular distributions, use advanced min / most-likely / max inputs with enforced ordering.
+
+Every input must have a clear source tooltip:
+"Case fact", "Team assumption", or "User-adjusted".
+
+==================================================
+6. REAL-TIME SLIDER → MODEL → GRAPH ENGINE
+==================================================
+
+THIS IS THE MOST IMPORTANT FUNCTIONAL REQUIREMENT.
+
+Every assumption slider must be mathematically connected to the simulation.
+
+Interaction logic:
+
+USER MOVES SLIDER
+    ↓
+UPDATED ASSUMPTION STATE
+    ↓
+SIMULATION ENGINE RECALCULATES
+    ↓
+UPDATED EBITDA / CASH-FLOW / GATE OUTCOMES
+    ↓
+ALL CONNECTED GRAPHS AND KPIs UPDATE
+    ↓
+BASELINE VS CURRENT DELTA IS DISPLAYED
+
+Use a two-stage calculation approach:
+
+A. LIVE PREVIEW
+
+While a user drags a slider:
+- Debounce changes to avoid excessive calculations.
+- Compute a genuine, smaller preview sample when needed.
+- Smoothly redraw connected charts.
+- Clearly label the preview sample size.
+- Never label a 2,000-run preview as a 20,000-run result.
+
+B. FULL SIMULATION
+
+When the user releases the slider or clicks RUN SIMULATION:
+- Run the selected number of iterations.
+- Recompute all financial and operational outcomes.
+- Update all charts from the completed sample.
+- Recalculate probabilities, percentiles and sensitivity rankings.
+- Save the result as a new scenario snapshot.
+
+Use Web Workers or a performant Python backend so the UI does not freeze.
+
+Prefer the exact supplied Python / NumPy / SciPy reference engine as the computational source of truth.
+
+If a JavaScript engine is necessary, implement and test equivalent distributions, correlations, gate rules, and time-phased cash flows.
+
+All charts on the page must consume the SAME active simulation result object.
+
+Avoid independent chart-level random generation.
+
+==================================================
+7. SIMULATION EXPERIENCE — CINEMATIC BUT REAL
+==================================================
+
+Create a visually impressive run experience.
+
+When the user clicks:
+"RUN 20,000 ITERATIONS"
+
+Open a premium simulation progress overlay.
+
+Title:
+"Simulating 20,000 Possible Futures"
+
+Show five phases:
+
+01. Sampling uncertain inputs
+02. Evaluating operating outcomes
+03. Testing investment funding gates
+04. Modeling 60-month cash flows
+05. Aggregating risk distributions
+
+Display:
+- Actual completed iteration count
+- True progress percentage
+- Current elapsed time
+- Current provisional median EBITDA
+- Current provisional Gate 1 and Gate 2 pass rates
+- Financial risk distribution building up
+- Running scenario counter
+
+Example visualization:
+
+ITERATIONS PROCESSED
+12,500 / 20,000
+
+As genuine iteration batches complete, update the histogram progressively.
+
+Use subtle particles or an animated probability-density effect around the live charts.
+
+Use actual execution progress.
+
+NEVER display fake progress counters.
+NEVER generate arbitrary pass/fail percentages.
+NEVER pretend a background job is running after execution has completed.
+
+Once finished, animate:
+"20,000 SCENARIOS ANALYZED"
+
+Then transition into the final updated dashboard.
+
+Show model version, seed, run date/time, number of iterations, and assumption-set identifier.
+
+==================================================
+8. CHART VISUALIZATION SUITE
+==================================================
+
+Build a rich, integrated chart gallery.
+
+CHART 1 — EBITDA PROBABILITY DISTRIBUTION
+
+A beautiful interactive histogram.
+
+X-axis: Annualized EBITDA uplift (₹ Cr)
+Y-axis: Number of simulations
+
+Include:
+- P10 / P50 / P90 markers
+- Median marker
+- ₹70 Cr Gate 2 hurdle
+- Passing and failing distributions
+- Hover tooltips showing counts and probability
+- Current scenario vs baseline overlay
+
+The percentile markers must update when sliders change.
+
+Use blue bars and gold highlights.
+
+Explain below:
+"Shows the range of possible annual EBITDA improvements and downside risk."
+
+CHART 2 — CASH-FLOW FAN CHART
+
+Show cumulative pre-tax cash flows from Month 0 to Month 60.
+
+Display:
+- Many faint sample trajectories
+- Median cumulative cash-flow line
+- P10 and P90 bands
+- Zero-cash break-even line
+- Month 30 target marker
+- Funding disbursement markers
+
+Allow:
+All scenarios / fully funded / failed-gate scenarios
+
+Do not invent cumulative cash trajectories; calculate them from the actual monthly cash-flow engine.
+
+CHART 3 — FINANCIAL DISTRIBUTION COMPARISON
+
+A premium dual-distribution chart.
+
+Compare:
+- Fully funded scenarios
+- Gate-delayed / partially funded scenarios
+
+Metric selector:
+NPV / payback / EBITDA / owned WC release
+
+Display separate distributions, medians, percentile markers, and a clean legend.
+
+Important:
+These are observational groups formed by the simulated gate rules, not randomized causal alternatives. Do not interpret differences as proof that one intervention caused the outcome.
+
+CHART 4 — GATE SUCCESS & FUNDING FUNNEL
+
+Create a funnel visualization:
+
+20,000 scenarios
+     ↓
+Gate 1 on-time passes
+     ↓
+Phase II funding eligibility
+     ↓
+Gate 2 passes
+     ↓
+Full ₹150 Cr deployment
+
+Show exact scenario counts and percentages.
+
+Represent remediation separately:
+- Gate 1 pass at M9
+- Gate 1 failure followed by retest and conditional funding
+- Gate 1 failure without successful remediation
+- Gate 2 pass / fail
+
+Add an exclusive-outcome donut chart so the segments genuinely sum to 100%.
+
+CHART 5 — RANKED SENSITIVITY / TORNADO
+
+A striking horizontal diverging sensitivity chart.
+
+Rank variables by their computed influence on EBITDA.
+
+Use the reference approach:
+Spearman rank correlation on the appropriate funded scenario subset.
+
+Baseline important drivers include:
+- Month 22 fill-rate uplift
+- Avoided cost
+- Demand recovery
+- Inventory reduction
+- Scheduling efficiency
+- Data readiness
+- Adoption
+
+Positive association: blue.
+Negative association: gold or red, clearly labeled.
+
+Show exact values when the current simulation finishes.
+
+Make clear:
+"Association, not proof of causality."
+
+CHART 6 — RISK & FAILURE ROOT-CAUSE DISTRIBUTION
+
+Show what prevented scenarios from achieving successful full deployment.
+
+Use:
+- No successful Gate 1 remediation
+- Gate 2 fill failure
+- Gate 2 inventory failure
+- Gate 2 EBITDA failure
+- Audit / avoided-cost guardrail failure
+- Successful deployment
+
+Represent these as mutually exclusive model classification buckets.
+
+Use a ranked Pareto chart or waterfall.
+
+Add an actionable explanation alongside each category.
+
+CHART 7 — PAYBACK DISTRIBUTION
+
+Histogram or cumulative probability curve of payback months.
+
+Include:
+- Month 30 investment hurdle
+- Median payback month
+- P10 and P90 markers
+- Probability of repayment within 30 months
+
+Show conditional and unconditional results as separate selectable metrics.
+
+CHART 8 — RISK-RETURN SCATTER
+
+Plot individual simulated outcomes.
+
+X-axis:
+Inventory reduction or cumulative cash invested
+
+Y-axis:
+Annualized EBITDA or 5-year NPV
+
+Color each dot by:
+Gate pass / fail / delayed / stopped
+
+Allow zoom, lasso selection, filtering, hover inspection.
+
+Click a point to open the underlying simulated scenario.
+
+CHART 9 — TWO-FACTOR SENSITIVITY HEAT MAP
+
+Build a heat map exploring:
+
+Demand recovery vs scheduling benefit
+
+Cell value:
+Annualized EBITDA
+
+Use the same financial formula and current controlled assumptions.
+
+Show the ₹70 Cr pass region.
+
+The heat map should update when other inputs change.
+
+Explicitly label whether values reflect conditional expected outcomes or repeated simulations.
+
+CHART 10 — CONTROL TOWER EARLY-WARNING MODEL
+
+Show:
+- Percentage of runs triggering early warnings
+- Model recall of unsuccessful gate outcomes
+- Model precision of alerts
+- Top leading risk indicators
+
+Reference baseline:
+Modeled warning recall approximately 78.8%.
+
+Do not claim that alerts themselves reduce failure probability unless a separately modeled, justified intervention is introduced.
+
+==================================================
+9. GATE ENGINE AND CAPITAL DEPLOYMENT
+==================================================
+
+Implement actual model constraints.
+
+BASELINE:
+Fill rate = 86%
+Inventory = 46 days
+
+GATE 1 — MONTH 9
+
+Required:
+Fill rate ≥89%
+Inventory days ≤43
+Annualized EBITDA uplift ≥₹22 Cr
+
+If Gate 1 passes:
+The next ₹58 Cr tranche is eligible for release at Month 10.
+
+If Gate 1 fails:
+Execute the separately modeled remediation/retest scenario.
+Successful retest may release the second tranche at Month 16.
+
+The remediation chance, benefit adjustments, and timing are TEAM ASSUMPTIONS, not case-proven outcomes.
+
+GATE 2 — MONTH 22
+
+Required:
+Fill rate ≥92%
+Inventory days ≤38
+Annualized EBITDA uplift ≥₹70 Cr
+Cumulative network working-capital release ≥₹170 Cr
+Audit and operating benefit rules satisfied
+
+If Gate 2 passes:
+The final ₹58 Cr tranche becomes eligible for release.
+
+If Gate 2 fails:
+Do not release the final tranche within the canonical model.
+Classify the relevant failure risk and show the stop / rebase response.
+
+Investment tranches:
+₹34 Cr initial
+₹58 Cr second
+₹58 Cr final
+
+Total cap:
+₹150 Cr
+
+Visualize these decisions using animated funding lanes or a Sankey-style gated capital flow.
+
+==================================================
+10. FINANCIAL MODELING REQUIREMENTS
+==================================================
+
+Use the actual canonical financial logic rather than an oversimplified ROI calculator.
+
+Modeled annualized EBITDA:
+
+EBITDA uplift =
+incremental recovered service contribution
++ separately attributable scheduling contribution
++ avoided operating costs
+- incremental running costs
+
+Service contribution must be calculated using the current fill-rate improvement, contribution per fill-rate point, and recovery calibration defined in the reference engine.
+
+Separate:
+- EBITDA benefit
+- Network working-capital release
+- ACPL-owned working-capital cash realization
+
+Network working-capital release is for operational and gate certification.
+
+ONLY realized ACPL-owned working-capital release enters the applicable free cash-flow model.
+
+Never add working-capital release to recurring EBITDA.
+
+Use the original 60-month cash-flow model for:
+- Timing of benefits
+- Conditional funding tranches
+- Cash-conversion assumptions
+- Owned working-capital releases
+- NPV at 18%
+- Annualized IRR
+- Durable payback month
+
+For IRR:
+Use time-phased cash flows and a numerical solver.
+Do not derive IRR by dividing annual profit by investment.
+
+Display uncomputable or undefined IRRs as N/A.
+
+The current model assumes that operating EBITDA converts into incremental pre-tax cash at an assumed rate. Clearly disclose this.
+
+The avoided-cost share must satisfy the relevant 40% financial guardrail according to the reference model.
+
+==================================================
+11. PRE-MORTEM & MANAGEMENT DECISION ENGINE
+==================================================
+
+Add a professional "What Could Go Wrong?" panel.
+
+For every active simulation, identify:
+- Most frequent gate failures
+- Main cause of failure
+- Risks associated with data readiness
+- Risks associated with adoption
+- Low recovery scenarios
+- Working-capital monetization risk
+- Delayed deployment
+- Weak scheduling benefits
+- Excessive ongoing costs
+
+Add a "Management Action" column.
+
+Examples:
+DATA READINESS WEAK
+→ Reconcile SKU-location data; postpone automation scale-up.
+
+GATE 1 FAILS
+→ Pause second tranche; initiate remediation and retest.
+
+GATE 2 FILL TARGET MISSED
+→ Diagnose replenishment coverage before approving expansion.
+
+EBITDA BELOW TARGET
+→ Verify independent scheduling contribution and avoided costs.
+
+WORKING CAPITAL DOES NOT CONVERT TO CASH
+→ Require Finance-certified, ACPL-owned cash release.
+
+Provide a risk-to-action pathway.
+
+Use analytical, non-alarmist language.
+
+==================================================
+12. INTERACTIVE SCENARIO COMPARISON
+==================================================
+
+Allow management to create custom scenarios:
+
+Baseline
+Conservative
+Operational Recovery
+High Adoption
+Delayed Deployment
+Custom Scenario
+
+These are scenario presets, not pre-established simulation forecasts.
+
+Changing presets must actually change model parameters and rerun calculations.
+
+Offer side-by-side visual comparisons:
+
+Baseline vs Current
+
+Show:
+- Gate success delta
+- EBITDA median delta
+- NPV delta
+- Payback probability delta
+- Investment deployment delta
+
+Use a small gold highlight to show which assumptions changed.
+
+Add an "Explain the Change" panel:
+
+"Gate 2 success increased because the modeled inventory reduction and fill-rate distribution shifted upward. These are scenario-dependent results."
+
+Generate the explanation from actual computed changes.
+
+Do not invent causal attribution.
+
+==================================================
+13. SMART GRAPH INTERACTION
+==================================================
+
+All graph components must be interactive.
+
+Required functionality:
+- Hover for exact values
+- Tooltip definitions
+- Click to inspect a simulated scenario
+- Zoom and reset
+- Filter by funding status
+- Switch metrics
+- Compare baseline and current
+- Export PNG/SVG
+- Export CSV
+- Display P10/P50/P90
+- Display reference target lines
+- Expand chart to full-screen
+
+Use Recharts, Plotly.js, ECharts, D3, or another production-quality visualization library compatible with the existing stack.
+
+For dense scatter plots, use canvas/WebGL rendering where necessary.
+
+For 20,000 points, maintain smooth rendering without unnecessary redraws.
+
+Ensure visual interactivity remains responsive when a simulation is running.
+
+==================================================
+14. ADVANCED PRESENTATION MODE
+==================================================
+
+Create a dedicated "Board Presentation View".
+
+This should transform the active simulation into a concise, widescreen executive dashboard.
+
+Include:
+- Strategic headline
+- Five KPI metrics
+- Three flagship Monte Carlo graphs
+- Funding-gate probability
+- Top three risk drivers
+- A recommendation / risk interpretation
+- Methodology and assumptions footer
+
+Use the existing PPT theme:
+Navy + Blue + Yellow + White.
+
+The output should look suitable for a consulting case competition Appendix slide.
+
+Include:
+"Model: 20,000 seeded Monte Carlo scenarios"
+"Assumption-driven estimates; not Finance-certified"
+
+Allow high-resolution PNG and PDF export.
+
+==================================================
+15. EXCEL INTEGRATION AND MODEL TRANSPARENCY
+==================================================
+
+Add a "Model & Methodology" tab.
+
+Include:
+- Link to the original Excel workbook
+- Assumption register
+- Distribution definitions
+- Model equations
+- Iteration counts
+- Random seed
+- Input dependency assumptions
+- Gate pass formulas
+- Working-capital logic
+- Cash-flow assumptions
+- Model limitations
+- Exported simulation ledger
+
+Original workbook reference:
+https://docs.google.com/spreadsheets/d/1zuo2YjVJzCL_hUBUVow3TcjVzOvFuSVt/edit
+
+If the app allows workbook upload, the uploaded file must be parsed and mapped explicitly to supported input fields. Do not claim to execute arbitrary Excel formulas unless this functionality is implemented.
+
+Export current scenarios with sufficient fields to reconstruct the displayed charts.
+
+Never replace the original baseline workbook silently.
+
+==================================================
+16. UI MICRO-INTERACTIONS
+==================================================
+
+The application must feel premium and responsive.
+
+Use:
+- Smooth chart transitions
+- Number count-up effects
+- Animated probability bands
+- Dynamic reference lines
+- Gold highlight of changed model values
+- Sticky slider panel
+- High-quality skeleton states
+- Clear hover descriptions
+- Responsive chart containers
+- Keyboard-accessible inputs
+- User-friendly loading and error states
+
+Simulation status must be explicit:
+"Baseline snapshot"
+"Live preview — 2,000 runs"
+"Running — 12,500 / 20,000"
+"Completed — 20,000 runs"
+"Failed — results unchanged"
+
+A failed simulation must never overwrite the last valid results.
+
+Never use artificial calculations for visual effect.
+
+==================================================
+17. TECHNICAL ARCHITECTURE
+==================================================
+
+Prefer integration with the project's existing React / Next.js or other current stack.
+
+A suitable architecture:
+
+UI COMPONENTS
+→ Parameter Store
+→ Simulation Controller
+→ Python/NumPy or validated JavaScript Engine
+→ Scenario Result Store
+→ Chart Data Selectors
+→ Live Chart Components
+
+The simulation engine should return one coherent result object containing:
+
+- Model ID and run metadata
+- Current input assumptions
+- Iteration count
+- Scenario results
+- Gate status vectors
+- EBITDA statistics
+- IRR statistics
+- Cash-flow statistics
+- Payback statistics
+- Working-capital metrics
+- Driver sensitivity
+- Pre-mortem failure classifications
+- Control-tower alert metrics
+
+Performance:
+- Use batch computation
+- Keep heavy calculations off the main UI thread
+- Stream actual progress when supported
+- Cache baseline results
+- Support fixed-seed reruns
+- Avoid rerunning unchanged simulations
+- Cancel stale jobs when users request a new run
+
+If exact Python execution is not available in the deployment environment, explain the constraint and implement a verified equivalent worker-based engine instead.
+
+Do not silently substitute a simplified or fabricated engine.
+
+==================================================
+18. ACCEPTANCE TESTS
+==================================================
+
+The feature is complete only if the following tests pass.
+
+TEST 1:
+Load baseline with 20,000 runs and show reference metrics.
+
+TEST 2:
+Rerun with original inputs and original seed.
+Reproduce reference results within documented numerical tolerance.
+
+TEST 3:
+Increase demand recovery while holding all other assumptions unchanged.
+EBITDA distributions must respond consistently with the model equations.
+
+TEST 4:
+Reduce scheduling contribution.
+Independent yield and dependent EBITDA statistics must recalculate.
+
+TEST 5:
+Decrease inventory reduction.
+Working-capital outcomes and inventory-based gate pass rates must update.
+
+TEST 6:
+Reduce data readiness and adoption.
+Relevant operational and audit conditions must recalculate.
+
+TEST 7:
+Change iterations from 20,000 to 5,000.
+Actually run 5,000 scenarios and display that exact count.
+
+TEST 8:
+Return to 20,000 and reset all assumptions.
+Restore the controlled baseline configuration.
+
+TEST 9:
+Verify funding tranches only release according to gate rules.
+
+TEST 10:
+Verify each histogram, KPI card, probability, and pie/donut category uses the same underlying run.
+
+TEST 11:
+Ensure all mutually exclusive donut categories add up to 100%, subject to rounding.
+
+TEST 12:
+Validate that working-capital release is not double-counted in EBITDA.
+
+TEST 13:
+Validate payback denominators, IRR computation, and 60-month discounted cash flows.
+
+TEST 14:
+Ensure the existing website modules, authentication, routing, and responsive design still work.
+
+TEST 15:
+Run a full 20,000-iteration simulation in the deployed application, not only in development.
+
+==================================================
+19. FINAL DELIVERY EXPECTATIONS
+==================================================
+
+Deliver a fully functioning Monte Carlo Intelligence Engine inside the EXISTING Drishti Aegis prototype.
+
+It must include:
+- Interactive assumption sliders
+- Actual numerical simulation
+- Dynamic financial charts
+- Animated real iteration progress
+- Gate success dashboard
+- Cash-flow fan visualization
+- EBITDA probability histograms
+- IRR and NPV distributions
+- Sensitivity and tornado diagrams
+- Scenario comparison
+- Risk heat map / pre-mortem
+- Funding stop/go visualizations
+- Control-tower early warnings
+- Model methodology
+- Exportable executive board view
+
+All numbers must be calculated from the selected run.
+
+The baseline should reproduce the supplied verified reference model.
+
+Any user-adjusted scenario should generate new outputs rather than reuse baseline percentages.
+
+Preserve the existing product, enhance its analytical value, and make the entire experience intuitive enough for a CEO to understand but rigorous enough for a financial analyst to audit.
+
+FINAL PRODUCT STANDARD:
+
+"An enterprise-grade digital twin of ACPL's investment uncertainty — combining financial simulation, risk intelligence, control-tower signals, and capital-allocation decisions in one interactive command center."

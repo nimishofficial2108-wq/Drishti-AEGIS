@@ -9,10 +9,10 @@ import {
   generateSyntheticDemoDataset
 } from '../../engines/mlEngine';
 import { PartialDependenceChart } from '../charts/PartialDependenceChart';
-import { Cpu, Upload, Download, RotateCcw, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { Cpu, Upload, Download, RotateCcw, AlertTriangle, CheckCircle2, Dices } from 'lucide-react';
 
 export const PredictiveMlStudio: React.FC = () => {
-  const { state, setMLBlend, retrainML } = useAegis();
+  const { state, setMLBlend, retrainML, setActiveSection } = useAegis();
   const [csvError, setCsvError] = useState<string | null>(null);
   const [csvSuccess, setCsvSuccess] = useState<string | null>(null);
 
@@ -116,7 +116,7 @@ export const PredictiveMlStudio: React.FC = () => {
             Trainable Machine Learning Intelligence
           </h2>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center flex-wrap gap-2.5">
           <span
             className={`px-2.5 py-1 text-xs font-bold rounded-md border ${
               state.ml.origin === 'IMPORTED USER CSV'
@@ -126,6 +126,13 @@ export const PredictiveMlStudio: React.FC = () => {
           >
             {state.ml.origin === 'IMPORTED USER CSV' ? 'USER-TRAINED MODEL' : 'SYNTHETIC DEMONSTRATION'}
           </span>
+          <button
+            onClick={() => setActiveSection('scenario')}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1465C7] text-white hover:bg-[#083E84] active:scale-95 transition-all shadow-xs cursor-pointer"
+          >
+            <Dices className="w-3.5 h-3.5 text-[#F0C11E]" />
+            <span>Test scheduling efficiency in Monte Carlo Lab</span>
+          </button>
         </div>
       </div>
 

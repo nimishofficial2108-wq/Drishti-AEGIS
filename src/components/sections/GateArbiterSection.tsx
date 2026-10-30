@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAegis } from '../../context/AegisContext';
 import { formatNum, formatCr } from '../../engines/mathUtils';
-import { CheckCircle2, AlertOctagon, AlertTriangle, Shield, ArrowRight, HelpCircle } from 'lucide-react';
+import { CheckCircle2, AlertOctagon, AlertTriangle, Shield, ArrowRight, HelpCircle, Dices } from 'lucide-react';
 
 export const GateArbiterSection: React.FC = () => {
   const {
@@ -68,7 +68,14 @@ export const GateArbiterSection: React.FC = () => {
             AEGIS Capital Gate Arbiter & What-If Workbench
           </h2>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center flex-wrap gap-2">
+          <button
+            onClick={() => setActiveSection('scenario')}
+            className="text-xs font-bold text-white bg-[#1465C7] hover:bg-[#083E84] px-3 py-1.5 rounded-lg shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+          >
+            <Dices className="w-3.5 h-3.5 text-[#F0C11E]" />
+            <span>Simulate gate failure in Monte Carlo Lab</span>
+          </button>
           <button
             onClick={() => setActiveSection('audit')}
             className="text-xs font-bold text-[#0B376A] bg-white border border-slate-300 hover:bg-slate-50 px-3 py-1.5 rounded-lg shadow-xs transition-colors flex items-center gap-1 cursor-pointer"
